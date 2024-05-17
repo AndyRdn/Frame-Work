@@ -42,24 +42,21 @@ public class FrontController extends HttpServlet {
                 // Convertir l'URL en chemin de fichier
                 File src = new File(URLDecoder.decode(url.getFile(),"UTF-8"));
                 // Lire tous les fichiers dans le répertoire
-                if (src.isDirectory()){
-                    for (File p : src.listFiles()){
-                        if (p.getName().endsWith(".class")){
-                            String className = p.getName().replace(".class", "");
-                            out.println();
-                            // Charger la classe
-                            Class<?> clazz = Class.forName(packageName+"."+className);
-                            // Vérifier si la classe a l'annotation
-                            if (clazz.isAnnotationPresent(ToController.class)) {
-                                controllername.add(className);
-                            }else {
-                                out.println("tsy izy");
-                            }
+                for (File p : src.listFiles()){
+                    if (p.getName().endsWith(".class")){
+                        String className = p.getName().replace(".class", "");
+                        out.println();
+                        // Charger la classe
+                        Class<?> clazz = Class.forName(packageName+"."+className);
+                        // Vérifier si la classe a l'annotation
+                        if (clazz.isAnnotationPresent(ToController.class)) {
+                            controllername.add(className);
+                        }else {
+                            out.println("tsy izy");
                         }
                     }
-                }else {
-
                 }
+                check=true;
                 out.println(controllername.toString());
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
