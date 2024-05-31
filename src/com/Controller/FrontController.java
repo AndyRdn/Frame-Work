@@ -3,6 +3,7 @@ package com.Controller;
 import com.Annotation.Get;
 import com.Annotation.ToController;
 import com.Mapping.Mapping;
+import com.Utils.ScanFile;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -39,43 +40,18 @@ public class FrontController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         String packageName = this.getInitParameter("controller_package");
         String urlweb=req.getRequestURI();
-
         try {
-            URL url = Thread.currentThread().getContextClassLoader().getResource(packageName.replace(".", "/"));
-            // Convertir l'URL en chemin de fichier
-            File src = new File(URLDecoder.decode(url.getFile(), "UTF-8"));
-            // Lire tous les fichiers dans le répertoire
-            for (File p : src.listFiles()) {
-                if (p.getName().endsWith(".class")) {
-                    String className = p.getName().replace(".class", "");
-                    // Charger la classe
-                    Class<?> clazz = Class.forName(packageName + "." + className);
-                    // Vérifier si la classe a l'annotation
-                    if (clazz.isAnnotationPresent(ToController.class)) {
-                        Method[] methods = clazz.getMethods();
-                        // Parcourir les méthodes et vérifier si elles ont l'annotation @Get
-                        for (Method method : methods) {
-                            if (method.isAnnotationPresent(Get.class)) {
-                                analise.put(method.getAnnotation(Get.class).url(),new Mapping(className,method.getName()));
-                            }
-                        }
-                    } else {
-//                        out.println("tsy izy");
-                    }
-                }
-            }
+            ScanFile.scanner(packageName,analise);
             if (analise.containsKey(urlweb)){
-                out.println(urlweb);
-                out.println(analise.get(urlweb).getMethodeName());
-                out.println(analise.get(urlweb).getClassName());
+                System.out.println(analise.get(urlweb).getClassName());
+                out.println(analise.get(urlweb).execMethode());
             }else {
-                out.println(urlweb);
-                out.println("pas de methode associer");
+                out.println("URl_Inconnue");
             }
-        } catch (Exception e) {
-
+        }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
 
