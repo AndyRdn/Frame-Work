@@ -3,6 +3,7 @@ package com.Controller;
 import com.Annotation.Get;
 import com.Annotation.ToController;
 import com.Mapping.Mapping;
+import com.Mapping.ModelView;
 import com.Utils.ScanFile;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -43,8 +44,15 @@ public class FrontController extends HttpServlet {
         try {
             ScanFile.scanner(packageName,analise);
             if (analise.containsKey(urlweb)){
-                System.out.println(analise.get(urlweb).getClassName());
-                out.println(analise.get(urlweb).execMethode());
+                if (analise.get(urlweb).execMethode() instanceof ModelView){
+                    ModelView temp=(ModelView)analise.get(urlweb).execMethode();
+                    for (String key : temp.getData().keySet()) {
+                        req.setAttribute(key,temp.getData().get(key));
+                    }
+                    req.getRequestDispatcher(temp.getUrl()).forward(req,resp);
+                }else {
+                    System.out.println((String)analise.get(urlweb).execMethode());
+                }
             }else {
                 out.println("URl_Inconnue");
             }
