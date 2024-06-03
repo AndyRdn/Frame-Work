@@ -27,9 +27,11 @@ public class Mapping {
         this.methodeName = methodeName;
 
     }
-    public String execMethode() throws Exception {
+    public Object execMethode() throws Exception {
         System.out.println(className);
         Object clazzz=Class.forName(className).getDeclaredConstructor().newInstance();
-        return (String)Reflect.execMethode(clazzz,methodeName,null);
+        return  Reflect.execMethode(clazzz,methodeName,null);
     }
+
+
 }
