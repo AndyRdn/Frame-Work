@@ -27,38 +27,53 @@ import java.util.List;
 
 public class FrontController extends HttpServlet {
     HashMap<String , Mapping> analise=new HashMap<>();
+
+    @Override
+    public void init() throws ServletException {
+        String packageName = this.getInitParameter("controller_package");
+        ScanFile.scanner(packageName,analise);
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        procesRquest(req,resp);
+        try {
+            procesRquest(req,resp);
+        } catch (ClassNotFoundException e) {
+            throw new ServletException(e);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        procesRquest(req,resp);
+        try {
+            procesRquest(req,resp);
+        } catch (ClassNotFoundException e) {
+            throw new ServletException(e);
+        }
     }
 
-    protected void procesRquest(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void procesRquest(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, ClassNotFoundException {
         PrintWriter out = resp.getWriter();
-        String packageName = this.getInitParameter("controller_package");
         String urlweb=req.getRequestURI();
-        try {
-            ScanFile.scanner(packageName,analise);
-            if (analise.containsKey(urlweb)){
-                if (analise.get(urlweb).execMethode() instanceof ModelView){
-                    ModelView temp=(ModelView)analise.get(urlweb).execMethode();
-                    for (String key : temp.getData().keySet()) {
-                        req.setAttribute(key,temp.getData().get(key));
+            try {
+                if (analise.containsKey(urlweb)) {
+                    if (analise.get(urlweb).execMethode() instanceof ModelView) {
+                        ModelView temp = (ModelView) analise.get(urlweb).execMethode();
+                        for (String key : temp.getData().keySet()) {
+                            req.setAttribute(key, temp.getData().get(key));
+                        }
+                        req.getRequestDispatcher(temp.getUrl()).forward(req, resp);
+                    } else if (analise.get(urlweb).execMethode() instanceof String){
+                        System.out.println((String) analise.get(urlweb).execMethode());
+                    }else {
+                        throw new ServletException("type de retour Inconnue");
                     }
-                    req.getRequestDispatcher(temp.getUrl()).forward(req,resp);
-                }else {
-                    System.out.println((String)analise.get(urlweb).execMethode());
+                } else {
+                    throw new ServletException("URl_Inconnue");
                 }
-            }else {
-                out.println("URl_Inconnue");
+            }catch (Exception e){
+                throw new ServletException(e.getMessage());
             }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
     }
 
