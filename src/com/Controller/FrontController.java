@@ -57,14 +57,14 @@ public class FrontController extends HttpServlet {
         String urlweb=req.getRequestURI();
             try {
                 if (analise.containsKey(urlweb)) {
-                    if (analise.get(urlweb).execMethode() instanceof ModelView) {
-                        ModelView temp = (ModelView) analise.get(urlweb).execMethode();
+                    if (analise.get(urlweb).execMethode(req) instanceof ModelView) {
+                        ModelView temp = (ModelView) analise.get(urlweb).execMethode(req);
                         for (String key : temp.getData().keySet()) {
                             req.setAttribute(key, temp.getData().get(key));
                         }
                         req.getRequestDispatcher(temp.getUrl()).forward(req, resp);
-                    } else if (analise.get(urlweb).execMethode() instanceof String){
-                        System.out.println((String) analise.get(urlweb).execMethode());
+                    } else if (analise.get(urlweb).execMethode(req) instanceof String){
+                        System.out.println((String) analise.get(urlweb).execMethode(req));
                     }else {
                         throw new ServletException("type de retour Inconnue");
                     }
