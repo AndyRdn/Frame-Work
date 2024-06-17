@@ -34,21 +34,8 @@ public class Mapping {
     }
     public Object execMethode(HttpServletRequest request) throws Exception {
         System.out.println(className);
-        Object clazzz=Class.forName(className).getDeclaredConstructor().newInstance();
-        Method method=clazzz.getClass().getMethod(methodeName,null);
-        if (method.isAnnotationPresent(Param.class)){
-            Object params=request.getParameter(method.getAnnotation(Param.class).name());
-            return  Reflect.execMethode(clazzz,methodeName,params);
-        }else {
-            return Reflect.execMethode(clazzz, methodeName, null);
-        }
+        Object clazzz = Class.forName(className).getDeclaredConstructor().newInstance();
+        return Reflect.execMethode(clazzz, methodeName, request);
     }
-
-    public Object execMethode(Object[] params) throws Exception {
-        System.out.println(className);
-        Object clazzz=Class.forName(className).getDeclaredConstructor().newInstance();
-        return  Reflect.execMethode(clazzz,methodeName,params);
-    }
-
 
 }
