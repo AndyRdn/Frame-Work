@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47388540-d71b-488b-9c2d-a40f3d8bbf9f" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/com/Annotation/Param.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frame-work.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Frame-work.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Controller/FrontController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Controller/FrontController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Mapping/Mapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Mapping/Mapping.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Utils/ScanFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Utils/ScanFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Controller/FrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Controller/FrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Mapping/Mapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Mapping/Mapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Utils/ScanFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/ScanFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/com/Utils/Reflect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Utils/Reflect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Utils/Reflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/Reflect.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +41,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Sprint6__2534",
+    "git-widget-placeholder": "Sprint7__2534",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/travail/Mr Naina/Frame-Work/src/com/Utils",
     "node.js.detected.package.eslint": "true",
@@ -58,6 +53,7 @@
     "project.structure.last.edited": "Problems",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -98,6 +94,8 @@
       <workItem from="1717737454649" duration="3485000" />
       <workItem from="1718168272824" duration="755000" />
       <workItem from="1718377245901" duration="5122000" />
+      <workItem from="1718622548442" duration="7715000" />
+      <workItem from="1718709149465" duration="15535000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -133,7 +131,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>11</line>
+          <line>7</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

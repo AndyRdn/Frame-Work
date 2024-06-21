@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.METHOD) // This annotation can be used on classes
+@Target(ElementType.PARAMETER) // This annotation can be used on classes
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Param {
     public String name() default "";
