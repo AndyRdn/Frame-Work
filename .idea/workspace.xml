@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47388540-d71b-488b-9c2d-a40f3d8bbf9f" name="Changes" comment="test">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frame-work.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Frame-work.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Utils/Reflect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Utils/Reflect.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Utils/Reflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/Reflect.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +93,7 @@
       <workItem from="1718168272824" duration="755000" />
       <workItem from="1718377245901" duration="5122000" />
       <workItem from="1718622548442" duration="7715000" />
-      <workItem from="1718709149465" duration="19711000" />
+      <workItem from="1718709149465" duration="19924000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />

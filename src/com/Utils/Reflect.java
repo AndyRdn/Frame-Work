@@ -73,16 +73,16 @@ public class Reflect {
                         }
 
                     }else {
-                        System.out.println(param.getName());
-                        if (isPrimitive(param.getClass().getSimpleName())){
-                            System.out.println("primit");
+
+                        if (isPrimitive(param.getType().getSimpleName())){
                             String paramValue= request.getParameter(param.getName());
                             paramval.add(paramValue);
                         }else {
-
-                            Object clazzz = Class.forName(param.getName()).getDeclaredConstructor().newInstance();
+                            System.out.println("Object");
+                            Object clazzz = param.getType().getDeclaredConstructor().newInstance();
                             Field[] fields=clazzz.getClass().getDeclaredFields();
-                            for (Field field: fields){
+                            for (int i = 0; i <fields.length ; i++) {
+                                Field field=fields[i];
                                 if (request.getParameter(param.getName()+"."+field.getName())!= null){
                                     Object paramValue= Reflect.cast(field.getType() , request.getParameter(param.getName()+"."+field.getName()));
                                     Method temp=clazzz.getClass().getMethod("set"+capitalize(field.getName()), field.getType());
@@ -90,6 +90,7 @@ public class Reflect {
                                 }
                             }
                             paramval.add(clazzz);
+
                         }
                     }
 
