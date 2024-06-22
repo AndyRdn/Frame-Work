@@ -51,10 +51,9 @@ public class Reflect {
                 List<Object> paramval=new ArrayList<>();
                 for (Parameter param : params) {
 
-                    if (isPrimitive(param.getClass().getSimpleName())) {
-                        System.out.println("ato ve nefa");
-                        if (param.getClass().isPrimitive()){
-                            System.out.println("primit");
+                    if (param.isAnnotationPresent(Param.class)) {
+
+                        if (isPrimitive(param.getType().getSimpleName())){
                             String paramValue= request.getParameter(param.getAnnotation(Param.class).name());
                             paramval.add(paramValue);
                         }else {
@@ -63,13 +62,9 @@ public class Reflect {
                             Field[] fields=clazzz.getClass().getDeclaredFields();
                             for (int i = 0; i <fields.length ; i++) {
                                 Field field=fields[i];
-                                System.out.println(param.getAnnotation(Param.class).name()+"."+field.getName());
                                 if (request.getParameter(param.getAnnotation(Param.class).name()+"."+field.getName())!= null){
                                     Object paramValue= Reflect.cast(field.getType() , request.getParameter(param.getAnnotation(Param.class).name()+"."+field.getName()));
                                     Method temp=clazzz.getClass().getMethod("set"+capitalize(field.getName()), field.getType());
-                                    System.out.println(paramValue);
-                                    System.out.println(temp.getName());
-                                    System.out.println(paramValue.getClass());
                                     temp.invoke(clazzz,paramValue);
                                 }
                             }
@@ -78,30 +73,30 @@ public class Reflect {
                         }
 
                     }else {
-                        System.out.println(param.getName());
-                        if (isPrimitive(param.getClass().getSimpleName())){
-                            System.out.println("primit");
+
+                        if (isPrimitive(param.getType().getSimpleName())){
                             String paramValue= request.getParameter(param.getName());
                             paramval.add(paramValue);
                         }else {
-
-                            Object clazzz = Class.forName(param.getName()).getDeclaredConstructor().newInstance();
+                            System.out.println("Object");
+                            Object clazzz = param.getType().getDeclaredConstructor().newInstance();
                             Field[] fields=clazzz.getClass().getDeclaredFields();
-                            for (Field field: fields){
+                            for (int i = 0; i <fields.length ; i++) {
+                                Field field=fields[i];
                                 if (request.getParameter(param.getName()+"."+field.getName())!= null){
                                     Object paramValue= Reflect.cast(field.getType() , request.getParameter(param.getName()+"."+field.getName()));
                                     Method temp=clazzz.getClass().getMethod("set"+capitalize(field.getName()), field.getType());
                                     temp.invoke(clazzz,paramValue);
                                 }
                             }
+                            paramval.add(clazzz);
 
                         }
                     }
-                    System.out.println("execute");
-                    return method.invoke(zavatra, paramval.toArray());
+
                 }
-                System.out.println();
-                val = method.invoke(zavatra, null);
+                System.out.println("execute");
+                return method.invoke(zavatra, paramval.toArray());
             }
         }
         return val;
