@@ -1,6 +1,7 @@
 package com.Utils;
 
 import com.Annotation.Param;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -74,24 +75,25 @@ public class Reflect {
 
                     }else {
 
-                        if (isPrimitive(param.getType().getSimpleName())){
-                            String paramValue= request.getParameter(param.getName());
-                            paramval.add(paramValue);
-                        }else {
-                            System.out.println("Object");
-                            Object clazzz = param.getType().getDeclaredConstructor().newInstance();
-                            Field[] fields=clazzz.getClass().getDeclaredFields();
-                            for (int i = 0; i <fields.length ; i++) {
-                                Field field=fields[i];
-                                if (request.getParameter(param.getName()+"."+field.getName())!= null){
-                                    Object paramValue= Reflect.cast(field.getType() , request.getParameter(param.getName()+"."+field.getName()));
-                                    Method temp=clazzz.getClass().getMethod("set"+capitalize(field.getName()), field.getType());
-                                    temp.invoke(clazzz,paramValue);
-                                }
-                            }
-                            paramval.add(clazzz);
-
-                        }
+//                        if (isPrimitive(param.getType().getSimpleName())){
+//                            String paramValue= request.getParameter(param.getName());
+//                            paramval.add(paramValue);
+//                        }else {
+//                            System.out.println("Object");
+//                            Object clazzz = param.getType().getDeclaredConstructor().newInstance();
+//                            Field[] fields=clazzz.getClass().getDeclaredFields();
+//                            for (int i = 0; i <fields.length ; i++) {
+//                                Field field=fields[i];
+//                                if (request.getParameter(param.getName()+"."+field.getName())!= null){
+//                                    Object paramValue= Reflect.cast(field.getType() , request.getParameter(param.getName()+"."+field.getName()));
+//                                    Method temp=clazzz.getClass().getMethod("set"+capitalize(field.getName()), field.getType());
+//                                    temp.invoke(clazzz,paramValue);
+//                                }
+//                            }
+//                            paramval.add(clazzz);
+//
+//                        }
+                        throw new ServletException("ETU002534 Annotation Param Innexistant");
                     }
 
                 }
