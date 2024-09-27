@@ -72,7 +72,6 @@ public class Reflect {
                                 }
                             }
                             paramval.add(clazzz);
-
                         }
 
                     }else if (param.getType().equals(CustomSession.class)){
