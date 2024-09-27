@@ -2,6 +2,7 @@ package com.Utils;
 
 import com.Annotation.Get;
 import com.Annotation.Param;
+import com.Annotation.Restapi;
 import com.Annotation.ToController;
 import com.Mapping.Mapping;
 import jakarta.servlet.ServletException;
@@ -37,7 +38,11 @@ public class ScanFile {
                             Method[] methods = clazz.getMethods();
                             // Parcourir les méthodes et vérifier si elles ont l'annotation @Get
                             for (Method method : methods) {
-                                if (method.isAnnotationPresent(Get.class)) {
+                                if (method.isAnnotationPresent(Restapi.class)) {
+                                    System.out.println("Rest beee");
+                                    analise.put("Restapi",new Mapping(packageName+"."+className,method.getName()));
+
+                                }else if (method.isAnnotationPresent(Get.class)) {
                                     System.out.println(method.getAnnotation(Get.class).url());
                                     if (!analise.containsKey(method.getAnnotation(Get.class).url())){
                                         analise.put(method.getAnnotation(Get.class).url(),new Mapping(packageName+"."+className,method.getName()));
@@ -46,8 +51,10 @@ public class ScanFile {
                                     }
                                 }
                             }
-                        } else {
+                        } else if (clazz.isAnnotationPresent(ToController.class)){
     //                        out.println("tsy izy");
+                        }else {
+
                         }
                     }catch (ClassNotFoundException e){
                         continue;
