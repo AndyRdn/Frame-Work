@@ -4,8 +4,10 @@ import com.Annotation.Get;
 import com.Annotation.ToController;
 import com.Mapping.Mapping;
 import com.Mapping.ModelView;
+import com.Utils.LocalDateString;
 import com.Utils.ScanFile;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,6 +25,7 @@ import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -73,7 +76,10 @@ public class FrontController extends HttpServlet {
                     }
                 } else if (analise.containsKey("Restapi")) {
                     System.out.println("execRest");
-                    Gson gson=new Gson();
+                    Gson gson=new GsonBuilder()
+                            .registerTypeAdapter(LocalDate.class,new LocalDateString())
+                            .create();
+
                     if (analise.get("Restapi").execMethode(req) instanceof ModelView) {
                         ModelView temp = (ModelView) analise.get("Restapi").execMethode(req);
                         out.println(gson.toJson(temp.getData()));

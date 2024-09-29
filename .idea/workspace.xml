@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47388540-d71b-488b-9c2d-a40f3d8bbf9f" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/lib/gson-2.10.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Annotation/Restapi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frame-Work.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Frame-Work.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frame-work.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Frame-work.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/com/Controller/FrontController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Controller/FrontController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Utils/ScanFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Utils/ScanFile.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Controller/FrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Controller/FrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Utils/Reflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/Reflect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Utils/ScanFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/ScanFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -48,7 +41,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Sprint8__2534",
+    "git-widget-placeholder": "Sprint10__2534",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/travail/Mr Naina/Frame-Work/build/lib/gson-2.10.1.jar",
     "node.js.detected.package.eslint": "true",
@@ -108,7 +101,8 @@
       <workItem from="1719561636746" duration="4730000" />
       <workItem from="1719901743113" duration="3161000" />
       <workItem from="1727238454554" duration="59000" />
-      <workItem from="1727375499693" duration="10834000" />
+      <workItem from="1727375499693" duration="11434000" />
+      <workItem from="1727437224052" duration="2462000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
