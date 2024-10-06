@@ -10,6 +10,15 @@ import java.net.http.HttpRequest;
 public class Mapping {
     String className;
     String methodeName;
+    String verb;
+
+    public String getVerb() {
+        return verb;
+    }
+
+    public void setVerb(String verb) {
+        this.verb = verb;
+    }
 
     public String getClassName() {
         return className;
@@ -27,9 +36,10 @@ public class Mapping {
         this.methodeName = methodeName;
     }
 
-    public Mapping(String className, String methodeName) {
+    public Mapping(String className, String methodeName, String verb) {
         this.className = className;
         this.methodeName = methodeName;
+        this.verb = verb;
 
     }
     public Object execMethode(HttpServletRequest request) throws Exception {

@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD) // This annotation can be used on classes
 @Retention(RetentionPolicy.RUNTIME) // This annotation is retained at runtime
-public @interface Get {
-
+public @interface Url {
+    public String url() default "";
 }
