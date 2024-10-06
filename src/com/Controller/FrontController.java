@@ -63,6 +63,12 @@ public class FrontController extends HttpServlet {
         String urlweb=req.getRequestURI();
             try {
                 if (analise.containsKey(urlweb)) {
+                    System.out.println(req.getMethod());
+                    System.out.println("verbe:"+analise.get(urlweb).getVerb());
+
+                    if (!analise.get(urlweb).getVerb().equalsIgnoreCase(req.getMethod())){
+                        throw new Exception("Methode invalide");
+                    }
                     if (analise.get(urlweb).execMethode(req) instanceof ModelView) {
                         ModelView temp = (ModelView) analise.get(urlweb).execMethode(req);
                         for (String key : temp.getData().keySet()) {
@@ -75,6 +81,10 @@ public class FrontController extends HttpServlet {
                         throw new ServletException("type de retour Inconnue");
                     }
                 } else if (analise.containsKey("Restapi")) {
+                    System.out.println(req.getProtocol());
+                    if (!analise.get(urlweb).getVerb().equalsIgnoreCase(req.getMethod())){
+                        throw new Exception("Methode invalide");
+                    }
                     System.out.println("execRest");
                     Gson gson=new GsonBuilder()
                             .registerTypeAdapter(LocalDate.class,new LocalDateString())
