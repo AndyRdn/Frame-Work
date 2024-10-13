@@ -64,9 +64,9 @@ public class FrontController extends HttpServlet {
             try {
                 if (analise.containsKey(urlweb)) {
                     System.out.println(req.getMethod());
-                    System.out.println("verbe:"+analise.get(urlweb).getVerb());
+//                    System.out.println("verbe:"+analise.get(urlweb).getVerb());
 
-                    if (!analise.get(urlweb).getVerb().equalsIgnoreCase(req.getMethod())){
+                    if (!analise.get(urlweb).containsVerb(req.getMethod())){
                         throw new Exception("Methode invalide");
                     }
                     if (analise.get(urlweb).execMethode(req) instanceof ModelView) {
@@ -82,7 +82,7 @@ public class FrontController extends HttpServlet {
                     }
                 } else if (analise.containsKey("Restapi")) {
                     System.out.println(req.getProtocol());
-                    if (!analise.get(urlweb).getVerb().equalsIgnoreCase(req.getMethod())){
+                    if (!analise.get(urlweb).containsVerb(req.getMethod())){
                         throw new Exception("Methode invalide");
                     }
                     System.out.println("execRest");
@@ -98,10 +98,11 @@ public class FrontController extends HttpServlet {
                         out.println(gson.toJson(val));
                     }
                 } else {
-                    throw new ServletException("URl_Inconnue");
+                    resp.setStatus(404);
+                    out.println("Erreur 404: URL inconnue de tous ");
                 }
             }catch (Exception e){
-                throw new ServletException(e.getMessage());
+                e.printStackTrace();
             }
 
     }

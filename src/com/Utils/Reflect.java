@@ -2,6 +2,7 @@ package com.Utils;
 
 import com.Annotation.Param;
 import com.Mapping.CustomSession;
+import com.Mapping.VerbAction;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -43,12 +44,12 @@ public class Reflect {
         }
 
     }
-    public static Object execMethode(Object zavatra, String methodeName, HttpServletRequest request) throws Exception {
-        System.out.println(methodeName);
+    public static Object execMethode(Object zavatra, VerbAction verbActions, HttpServletRequest request) throws Exception {
+//        System.out.println(methodeName);
         Method[] methods=zavatra.getClass().getMethods();
         Object val=null;
         for (Method method : methods){
-            if (method.getName().equalsIgnoreCase(methodeName)) {
+            if (method.getName().equalsIgnoreCase(verbActions.getAction())) {
                 Parameter[] params=method.getParameters();
                 List<Object> paramval=new ArrayList<>();
                 CustomSession session=CustomSession.HttpToCustomeSession(request.getSession());

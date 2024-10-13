@@ -3,6 +3,7 @@ package com.Utils;
 import com.Annotation.*;
 import com.Mapping.Mapping;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -35,13 +36,15 @@ public class ScanFile {
                             Method[] methods = clazz.getMethods();
                             // Parcourir les méthodes et vérifier si elles ont l'annotation @Get
                             for (Method method : methods) {
+                                System.out.println(methods.length);
                                 System.out.println(method.getAnnotation(Url.class).url());
                                 if (method.isAnnotationPresent(Post.class)){
                                     System.out.println(method.getAnnotation(Url.class).url());
-                                    if (!analise.containsKey(method.getAnnotation(Url.class).url())){
-                                        analise.put(method.getAnnotation(Url.class).url(),new Mapping(packageName+"."+className,method.getName(),"POST"));
+                                    if (analise.containsKey(method.getAnnotation(Url.class).url())){
+                                        Mapping temp=(Mapping) analise.get(method.getAnnotation(Url.class).url());
+                                        temp.addVerbActions(method.getName(),"POST");
                                     }else {
-                                        throw new ServletException("UrlDoublant");
+                                        analise.put(method.getAnnotation(Url.class).url(),new Mapping(packageName+"."+className,method.getName(),"POST"));
                                     }
                                 }else {
 //
@@ -49,20 +52,19 @@ public class ScanFile {
                                         System.out.println("Rest beee");
                                         analise.put("Restapi",new Mapping(packageName+"."+className,method.getName(),"GET"));
 
-                                    }else if (!analise.containsKey(method.getAnnotation(Url.class).url())){
-                                        System.out.println(method.getAnnotation(Url.class).url());
-
-                                        analise.put(method.getAnnotation(Url.class).url(),new Mapping(packageName+"."+className,method.getName(),"GET"));
+                                    }else if (analise.containsKey(method.getAnnotation(Url.class).url())){
+                                        Mapping temp=(Mapping) analise.get(method.getAnnotation(Url.class).url());
+                                        temp.addVerbActions(method.getName(),"GET");
                                     }else {
-                                        throw new ServletException("UrlDoublant");
+                                        analise.put(method.getAnnotation(Url.class).url(),new Mapping(packageName+"."+className,method.getName(),"GET"));
                                     }
                                 }
                             }
                         }else {
-
+                            throw new Exception("Url Inconnue");
                         }
-                    }catch (NullPointerException e){
-                        continue;
+                    }catch (Exception e){
+                        e.printStackTrace();
                     }
 
                 }

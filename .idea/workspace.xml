@@ -5,17 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47388540-d71b-488b-9c2d-a40f3d8bbf9f" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/com/Annotation/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Annotation/Url.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/Mapping/VerbAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frame-work.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Frame-work.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Annotation/Get.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Annotation/Get.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/com/Controller/FrontController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Controller/FrontController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/com/Mapping/Mapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Mapping/Mapping.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/com/Utils/Reflect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Utils/Reflect.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/com/Utils/ScanFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Utils/ScanFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Annotation/Get.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Annotation/Get.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Controller/FrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Controller/FrontController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Mapping/Mapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Mapping/Mapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Utils/Reflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/Reflect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Utils/ScanFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/ScanFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -49,7 +48,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Sprint10__2534&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Sprint10__2534__Bis&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/travail/ClientStationPerso&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -113,7 +112,10 @@
       <workItem from="1727437224052" duration="2462000" />
       <workItem from="1727868439482" duration="2055000" />
       <workItem from="1727937707455" duration="60000" />
-      <workItem from="1728229102453" duration="5494000" />
+      <workItem from="1728229102453" duration="14072000" />
+      <workItem from="1728449349039" duration="2681000" />
+      <workItem from="1728474297506" duration="4000" />
+      <workItem from="1728840622728" duration="4213000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
