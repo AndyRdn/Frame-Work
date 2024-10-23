@@ -9,6 +9,7 @@ import com.Utils.ScanFile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
+@MultipartConfig
 public class FrontController extends HttpServlet {
     HashMap<String , Mapping> analise=new HashMap<>();
 

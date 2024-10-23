@@ -1,11 +1,13 @@
 package com.Utils;
 
 import com.Annotation.Param;
+import com.Mapping.CustomFile;
 import com.Mapping.CustomSession;
 import com.Mapping.VerbAction;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -63,16 +65,25 @@ public class Reflect {
                         }else {
                             System.out.println("Object");
                             Object clazzz = param.getType().getDeclaredConstructor().newInstance();
-                            Field[] fields=clazzz.getClass().getDeclaredFields();
-                            for (int i = 0; i <fields.length ; i++) {
-                                Field field=fields[i];
-                                if (request.getParameter(param.getAnnotation(Param.class).name()+"."+field.getName())!= null){
-                                    Object paramValue= Reflect.cast(field.getType() , request.getParameter(param.getAnnotation(Param.class).name()+"."+field.getName()));
-                                    Method temp=clazzz.getClass().getMethod("set"+capitalize(field.getName()), field.getType());
-                                    temp.invoke(clazzz,paramValue);
+                            if (param.getType().equals(CustomFile.class)){
+                                Part file= request.getPart(param.getAnnotation(Param.class).name());
+                                System.out.println(file.getName());
+                                CustomFile cFile= new CustomFile(file);
+                                paramval.add(cFile);
+                            }else {
+                                Field[] fields=clazzz.getClass().getDeclaredFields();
+                                for (int i = 0; i <fields.length ; i++) {
+                                    Field field=fields[i];
+                                    if (request.getParameter(param.getAnnotation(Param.class).name()+"."+field.getName())!= null){
+                                        Object paramValue= Reflect.cast(field.getType() , request.getParameter(param.getAnnotation(Param.class).name()+"."+field.getName()));
+                                        Method temp=clazzz.getClass().getMethod("set"+capitalize(field.getName()), field.getType());
+                                        temp.invoke(clazzz,paramValue);
+                                    }
                                 }
+                                paramval.add(clazzz);
                             }
-                            paramval.add(clazzz);
+
+
                         }
 
                     }else if (param.getType().equals(CustomSession.class)){
