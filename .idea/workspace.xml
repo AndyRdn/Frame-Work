@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47388540-d71b-488b-9c2d-a40f3d8bbf9f" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/com/Mapping/VerbAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/Mapping/CustomFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frame-work.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Frame-work.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/com/Controller/FrontController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Controller/FrontController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Mapping/Mapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Mapping/Mapping.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/com/Utils/Reflect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Utils/Reflect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Utils/ScanFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Utils/ScanFile.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Controller/FrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Controller/FrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Mapping/Mapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Mapping/Mapping.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Utils/Reflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/Reflect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Utils/ScanFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/ScanFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,28 +38,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Sprint10__2534__Bis&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/travail/ClientStationPerso&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;D:/travail/Mr Naina/Frame-Work/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Sprint__12__2534",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/travail/ClientStationPerso",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "D:/travail/Mr Naina/Frame-Work/src/Main.java",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\travail\Mr Naina\Frame-Work\src" />
@@ -115,7 +111,9 @@
       <workItem from="1728229102453" duration="14072000" />
       <workItem from="1728449349039" duration="2681000" />
       <workItem from="1728474297506" duration="4000" />
-      <workItem from="1728840622728" duration="4213000" />
+      <workItem from="1728840622728" duration="5315000" />
+      <workItem from="1728881468416" duration="13000" />
+      <workItem from="1729660327855" duration="8287000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
