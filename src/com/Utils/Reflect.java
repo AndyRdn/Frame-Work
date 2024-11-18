@@ -1,6 +1,10 @@
 package com.Utils;
 
 import com.Annotation.Param;
+import com.Annotation.valide.Length;
+import com.Annotation.valide.Numeric;
+import com.Annotation.valide.Range;
+import com.Annotation.valide.Requiered;
 import com.Mapping.CustomFile;
 import com.Mapping.CustomSession;
 import com.Mapping.VerbAction;
@@ -72,12 +76,19 @@ public class Reflect {
                                 paramval.add(cFile);
                             }else {
                                 Field[] fields=clazzz.getClass().getDeclaredFields();
-                                for (int i = 0; i <fields.length ; i++) {
-                                    Field field=fields[i];
-                                    if (request.getParameter(param.getAnnotation(Param.class).name()+"."+field.getName())!= null){
-                                        Object paramValue= Reflect.cast(field.getType() , request.getParameter(param.getAnnotation(Param.class).name()+"."+field.getName()));
-                                        Method temp=clazzz.getClass().getMethod("set"+capitalize(field.getName()), field.getType());
-                                        temp.invoke(clazzz,paramValue);
+                                for (Field field : fields) {
+                                    System.out.println(field.getName());
+                                    if (request.getParameter(param.getAnnotation(Param.class).name() + "." + field.getName()) != null) {
+                                        Object paramValue = Reflect.cast(field.getType(), request.getParameter(param.getAnnotation(Param.class).name() + "." + field.getName()));
+                                        System.out.println(checkParam(paramValue, field));
+                                        System.out.println("ckeck");
+                                        System.out.println(request.getParameter(param.getAnnotation(Param.class).name() + "." + field.getName()));
+                                        if (checkParam(paramValue, field)) {
+                                            Method temp = clazzz.getClass().getMethod("set" + capitalize(field.getName()), field.getType());
+                                            temp.invoke(clazzz, paramValue);
+                                            System.out.println("niditra");
+                                        }
+
                                     }
                                 }
                                 paramval.add(clazzz);
@@ -101,6 +112,31 @@ public class Reflect {
             }
         }
         return val;
+    }
+
+    public static boolean checkParam(Object object,Field field) throws Exception {
+        if (field.isAnnotationPresent(Numeric.class)){
+            try{
+                Integer.parseInt(object.toString());
+            }catch (Exception e){
+                throw new Exception("Une Case doit etre Numeric");
+            }
+        }
+        if (field.isAnnotationPresent(Length.class)){
+            if (object.toString().length()>field.getAnnotation(Length.class).max()) throw new Exception("limite Depasser");
+        }
+        if (field.isAnnotationPresent(Range.class)){
+            if (Double.parseDouble(object.toString())>field.getAnnotation(Range.class).max() || Double.parseDouble(object.toString())<field.getAnnotation(Range.class).min()) throw new Exception("Range non respecter");
+        }
+        if (field.isAnnotationPresent(Requiered.class)){
+            System.out.println(object);
+            if (object==null){
+                System.out.println("null ve");
+                throw new Exception("Une case est null");
+            }
+        }
+
+        return true;
     }
 
     public static Object cast(Class clazz,Object params) {
