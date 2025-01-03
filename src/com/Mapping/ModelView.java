@@ -6,6 +6,16 @@ public class ModelView {
     String url;
     HashMap<String,Object> data=new HashMap<>();
 
+    String Error;
+
+    public String getError() {
+        return Error;
+    }
+
+    public void setError(String error) {
+        Error = error;
+    }
+
     public String getUrl() {
         return url;
     }
