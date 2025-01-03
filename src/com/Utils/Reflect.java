@@ -8,17 +8,20 @@ import com.Annotation.valide.Requiered;
 import com.Mapping.CustomFile;
 import com.Mapping.CustomSession;
 import com.Mapping.VerbAction;
+import com.exception.FieldException;
+import com.exception.ValidationCombine;
+import com.exception.ValidationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -50,10 +53,11 @@ public class Reflect {
         }
 
     }
-    public static Object execMethode(Object zavatra, VerbAction verbActions, HttpServletRequest request) throws Exception {
+    public static Object execMethode(Object zavatra, VerbAction verbActions, HttpServletRequest request) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, ServletException, IOException {
 //        System.out.println(methodeName);
         Method[] methods=zavatra.getClass().getMethods();
         Object val=null;
+        List<String> error=new ArrayList<>();
         for (Method method : methods){
             if (method.getName().equalsIgnoreCase(verbActions.getAction())) {
                 Parameter[] params=method.getParameters();
@@ -76,21 +80,27 @@ public class Reflect {
                                 paramval.add(cFile);
                             }else {
                                 Field[] fields=clazzz.getClass().getDeclaredFields();
+                                FieldException fieldException=new FieldException();
                                 for (Field field : fields) {
                                     System.out.println(field.getName());
                                     if (request.getParameter(param.getAnnotation(Param.class).name() + "." + field.getName()) != null) {
                                         Object paramValue = Reflect.cast(field.getType(), request.getParameter(param.getAnnotation(Param.class).name() + "." + field.getName()));
-                                        System.out.println(checkParam(paramValue, field));
                                         System.out.println("ckeck");
                                         System.out.println(request.getParameter(param.getAnnotation(Param.class).name() + "." + field.getName()));
-                                        if (checkParam(paramValue, field)) {
+
+                                        try{
+                                            checkParam(paramValue, field);
                                             Method temp = clazzz.getClass().getMethod("set" + capitalize(field.getName()), field.getType());
                                             temp.invoke(clazzz, paramValue);
                                             System.out.println("niditra");
+                                        }catch (ValidationCombine v){
+                                            System.out.println("error");
+                                            fieldException.addError(v);
                                         }
 
                                     }
                                 }
+                                if (!fieldException.getValidationCombines().isEmpty()) request.setAttribute("ListError", fieldException);
                                 paramval.add(clazzz);
                             }
 
@@ -114,27 +124,30 @@ public class Reflect {
         return val;
     }
 
-    public static boolean checkParam(Object object,Field field) throws Exception {
+    public static boolean checkParam(Object object,Field field) throws ValidationCombine {
+        List<ValidationException> validationExceptions=new ArrayList<>();
         if (field.isAnnotationPresent(Numeric.class)){
             try{
                 Integer.parseInt(object.toString());
             }catch (Exception e){
-                throw new Exception("Une Case doit etre Numeric");
+                validationExceptions.add(new ValidationException("Une Case doit etre Numeric",field.getName()));
             }
         }
         if (field.isAnnotationPresent(Length.class)){
-            if (object.toString().length()>field.getAnnotation(Length.class).max()) throw new Exception("limite Depasser");
+            if (object.toString().length()>field.getAnnotation(Length.class).max()) validationExceptions.add(new ValidationException("Limite Depasser",field.getName()));;
         }
         if (field.isAnnotationPresent(Range.class)){
-            if (Double.parseDouble(object.toString())>field.getAnnotation(Range.class).max() || Double.parseDouble(object.toString())<field.getAnnotation(Range.class).min()) throw new Exception("Range non respecter");
+            if (Double.parseDouble(object.toString())>field.getAnnotation(Range.class).max() || Double.parseDouble(object.toString())<field.getAnnotation(Range.class).min()) validationExceptions.add(new ValidationException("Range non respecter",field.getName()));
         }
         if (field.isAnnotationPresent(Requiered.class)){
             System.out.println(object);
-            if (object==null){
+            if (object==null || object.toString().equals("")){
                 System.out.println("null ve");
-                throw new Exception("Une case est null");
+                validationExceptions.add(new ValidationException("La case est null",field.getName()));;
             }
         }
+
+        if (!validationExceptions.isEmpty()) throw new ValidationCombine(validationExceptions);
 
         return true;
     }
