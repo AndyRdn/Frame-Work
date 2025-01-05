@@ -13,10 +13,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletRequestWrapper;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 import org.ietf.jgss.GSSContext;
 
 
@@ -38,10 +35,12 @@ import java.util.List;
 @MultipartConfig
 public class FrontController extends HttpServlet {
     HashMap<String , Mapping> analise=new HashMap<>();
+    String user_key=null;
 
     @Override
     public void init() throws ServletException {
         String packageName = this.getInitParameter("controller_package");
+        user_key=this.getInitParameter("user_key");
         ScanFile.scanner(packageName,analise);
     }
 
@@ -71,7 +70,6 @@ public class FrontController extends HttpServlet {
                 if (analise.containsKey(urlweb)) {
                     System.out.println(req.getMethod());
 //                    System.out.println("verbe:"+analise.get(urlweb).getVerb());
-
                     if (!analise.get(urlweb).containsVerb(req.getMethod())) {
                         throw new Exception("Methode invalide");
                     }
@@ -79,24 +77,8 @@ public class FrontController extends HttpServlet {
 
 
                 } else if (analise.containsKey("Restapi")) {
-                    System.out.println(req.getProtocol());
-                    if (!analise.get(urlweb).containsVerb(req.getMethod())) {
-                        throw new Exception("Methode invalide");
-                    }
-                    System.out.println("execRest");
-                    Gson gson = new GsonBuilder()
-                            .registerTypeAdapter(LocalDate.class, new LocalDateString())
-                            .create();
+                    restApiAction(req,out,urlweb);
 
-                    if (analise.get("Restapi").execMethode(req) instanceof ModelView) {
-                        ModelView temp = (ModelView) analise.get("Restapi").execMethode(req);
-                        out.println(gson.toJson(temp.getData()));
-
-
-                    } else {
-                        Object val = analise.get("Restapi").execMethode(req);
-                        out.println(gson.toJson(val));
-                    }
                 } else {
                     resp.setStatus(404);
                     out.println("Erreur 404: URL inconnue de tous ");
@@ -108,7 +90,7 @@ public class FrontController extends HttpServlet {
     }
 
     public void processeExecute(HttpServletRequest req, HttpServletResponse resp, String urlweb) throws Exception {
-        Object result=analise.get(urlweb).execMethode(req);
+        Object result=analise.get(urlweb).execMethode(req,user_key);
 
         if (result instanceof ModelView) {
             System.out.println("Mitraiteeee MV");
@@ -159,6 +141,27 @@ public class FrontController extends HttpServlet {
         RequestDispatcher dispatcher=req.getServletContext().getRequestDispatcher(temp.getError());
         System.out.println("forward");
         dispatcher.forward(wrapper,resp);
+    }
+
+    public void restApiAction(HttpServletRequest req, PrintWriter out, String urlweb) throws Exception {
+        System.out.println(req.getProtocol());
+        if (!analise.get(urlweb).containsVerb(req.getMethod())) {
+            throw new Exception("Methode invalide");
+        }
+        System.out.println("execRest");
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateString())
+                .create();
+
+        if (analise.get("Restapi").execMethode(req, user_key) instanceof ModelView) {
+            ModelView temp = (ModelView) analise.get("Restapi").execMethode(req,user_key);
+            out.println(gson.toJson(temp.getData()));
+
+
+        } else {
+            Object val = analise.get("Restapi").execMethode(req,user_key);
+            out.println(gson.toJson(val));
+        }
     }
 
 

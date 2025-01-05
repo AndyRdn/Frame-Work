@@ -54,10 +54,10 @@ public class Mapping {
         }
         return null;
     }
-    public Object execMethode(HttpServletRequest request) throws Exception {
+    public Object execMethode(HttpServletRequest request, String user_key) throws Exception {
         System.out.println(className);
         Object clazzz = Class.forName(className).getDeclaredConstructor().newInstance();
-        return Reflect.execMethode(clazzz, this.getByVerb(request.getMethod()), request);
+        return Reflect.execMethode(clazzz, this.getByVerb(request.getMethod()), request, user_key);
     }
 
 }
