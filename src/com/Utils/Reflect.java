@@ -1,5 +1,6 @@
 package com.Utils;
 
+import com.Annotation.Authentification;
 import com.Annotation.Param;
 import com.Annotation.valide.Length;
 import com.Annotation.valide.Numeric;
@@ -13,6 +14,7 @@ import com.exception.ValidationCombine;
 import com.exception.ValidationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 import java.io.IOException;
@@ -53,7 +55,7 @@ public class Reflect {
         }
 
     }
-    public static Object execMethode(Object zavatra, VerbAction verbActions, HttpServletRequest request) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, ServletException, IOException {
+    public static Object execMethode(Object zavatra, VerbAction verbActions, HttpServletRequest request,String user_key) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, ServletException, IOException {
 //        System.out.println(methodeName);
         Method[] methods=zavatra.getClass().getMethods();
         Object val=null;
@@ -62,7 +64,18 @@ public class Reflect {
             if (method.getName().equalsIgnoreCase(verbActions.getAction())) {
                 Parameter[] params=method.getParameters();
                 List<Object> paramval=new ArrayList<>();
+
+
                 CustomSession session=CustomSession.HttpToCustomeSession(request.getSession());
+
+                //check l'autorisation
+                if (method.isAnnotationPresent(Authentification.class)){
+                    String user=(String) session.get(user_key);
+                    System.out.println("USER:"+user);
+                    if (!checkUser(user,method)){
+                        throw new IllegalAccessException("Authentification incorrecte");
+                    }
+                }
                 for (Parameter param : params) {
 
                     if (param.isAnnotationPresent(Param.class)) {
@@ -179,6 +192,15 @@ public class Reflect {
 
     public static String capitalize(String original){
         return original.substring(0, 1).toUpperCase() + original.substring(1);
+    }
+
+    public static boolean checkUser(String user, Method method){
+        String[] authorised=method.getAnnotation(Authentification.class).roles();
+
+        for (String a:authorised){
+            if (user.equals(a)) return true;
+        }
+        return false;
     }
 
 }

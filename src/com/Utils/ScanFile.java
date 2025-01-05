@@ -38,6 +38,7 @@ public class ScanFile {
                             for (Method method : methods) {
                                 System.out.println(methods.length);
                                 System.out.println(method.getAnnotation(Url.class).url());
+
                                 if (method.isAnnotationPresent(Post.class)){
                                     System.out.println(method.getAnnotation(Url.class).url());
                                     if (analise.containsKey(method.getAnnotation(Url.class).url())){
@@ -47,7 +48,6 @@ public class ScanFile {
                                         analise.put(method.getAnnotation(Url.class).url(),new Mapping(packageName+"."+className,method.getName(),"POST"));
                                     }
                                 }else {
-//
                                     if (method.isAnnotationPresent(Restapi.class)) {
                                         System.out.println("Rest beee");
                                         analise.put("Restapi",new Mapping(packageName+"."+className,method.getName(),"GET"));
