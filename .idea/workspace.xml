@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47388540-d71b-488b-9c2d-a40f3d8bbf9f" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/com/Annotation/PublicMethode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frame-work.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Frame-work.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/com/Annotation/Authentification.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Annotation/Authentification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/com/Utils/Reflect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Utils/Reflect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Annotation/Authentification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Annotation/Authentification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Controller/FrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Controller/FrontController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Utils/Reflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/Reflect.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +133,8 @@
       <workItem from="1735973361443" duration="67000" />
       <workItem from="1736061265403" duration="9423000" />
       <workItem from="1736140335939" duration="54000" />
+      <workItem from="1739692607509" duration="3534000" />
+      <workItem from="1739697216799" duration="542000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
