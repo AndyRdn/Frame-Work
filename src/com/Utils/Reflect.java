@@ -2,6 +2,7 @@ package com.Utils;
 
 import com.Annotation.Authentification;
 import com.Annotation.Param;
+import com.Annotation.PublicMethode;
 import com.Annotation.valide.Length;
 import com.Annotation.valide.Numeric;
 import com.Annotation.valide.Range;
@@ -23,9 +24,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Reflect {
     public static String getClassName(Object zavatra){
@@ -69,10 +68,14 @@ public class Reflect {
                 CustomSession session=CustomSession.HttpToCustomeSession(request.getSession());
 
                 //check l'autorisation
-                if (method.isAnnotationPresent(Authentification.class)){
+                if (method.isAnnotationPresent(PublicMethode.class)){
+                    System.out.println("Public behh"+user_key);
                     String user=(String) session.get(user_key);
                     System.out.println("USER:"+user);
-                    if (!checkUser(user,method)){
+                }else if (zavatra.getClass().isAnnotationPresent(Authentification.class)){
+                    String user=(String) session.get(user_key);
+                    System.out.println("USER:"+user);
+                    if (!checkUser(user,zavatra.getClass())){
                         throw new IllegalAccessException("Authentification incorrecte");
                     }
                 }
@@ -194,13 +197,24 @@ public class Reflect {
         return original.substring(0, 1).toUpperCase() + original.substring(1);
     }
 
-    public static boolean checkUser(String user, Method method){
-        String[] authorised=method.getAnnotation(Authentification.class).roles();
-
-        for (String a:authorised){
-            if (user.equals(a)) return true;
+    public static boolean checkUser(String userRole, Class<?> clazz) {
+        // 1. Vérifier si la classe a l'annotation
+        if (!clazz.isAnnotationPresent(Authentification.class)) {
+            return false; // Politique : accès refusé si l'annotation est absente
         }
-        return false;
+
+        // 2. Récupérer les rôles autorisés
+        Authentification auth = clazz.getAnnotation(Authentification.class);
+        String[] authorizedRoles = auth.roles();
+
+        // 3. Comparer le rôle utilisateur avec la liste
+        for (String role : authorizedRoles) {
+            if (userRole.equals(role)) {
+                return true;
+            }
+        }
+
+        return false; // Aucun match trouvé
     }
 
 }
