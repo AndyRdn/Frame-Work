@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47388540-d71b-488b-9c2d-a40f3d8bbf9f" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/com/Annotation/Authentification.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frame-work.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Frame-work.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Controller/FrontController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Controller/FrontController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Controller/FrontController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Controller/FrontController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Mapping/Mapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Mapping/Mapping.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Utils/Reflect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Utils/Reflect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/com/Utils/ScanFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/com/Utils/ScanFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Controller/FrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Controller/FrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Mapping/Mapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Mapping/Mapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Utils/Reflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/Reflect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Utils/ScanFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Utils/ScanFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +124,8 @@
       <workItem from="1734336638876" duration="8810000" />
       <workItem from="1735892566097" duration="9839000" />
       <workItem from="1735973361443" duration="67000" />
-      <workItem from="1736061265403" duration="9421000" />
+      <workItem from="1736061265403" duration="9423000" />
+      <workItem from="1736140335939" duration="54000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
